@@ -1,11 +1,11 @@
 const http = require("http");
 const fs = require("fs");
-const url = require("url");
+const url = require('url');
 
 const myServer = http.createServer((req, res) => {
     if(req.url === '/favicon.ico') return res.end();
 
-    const log = `${new Date().toLocaleDateString()} : ${req.url} : New Request Received \n`;
+    const log = `${new Date().toLocaleString()} : ${req.url} : New Request Received \n`;
     const myUrl = url.parse(req.url, true);
     console.log(myUrl);
 
@@ -28,6 +28,7 @@ const myServer = http.createServer((req, res) => {
                 break;
 
             default:
+                res.writeHead(404);
                 res.end("404 Not Found")
 
         }
